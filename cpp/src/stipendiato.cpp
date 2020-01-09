@@ -6,13 +6,17 @@
  */
 
 #include "stipendiato.h"
+#include <iostream>
+#include <algorithm>
 
-Stipendiato::Stipendiato() {
-	// TODO Auto-generated constructor stub
+using namespace std;
 
+Stipendiato::Stipendiato() {}
+
+Stipendiato::Stipendiato(string const& nome, string const& cognome):
+			Dipendente(nome, cognome) {}
+
+void Stipendiato::stampaInfo() {
+	cout << "Dipendente stipendiato: " << endl;
+	Dipendente::stampaInfo();
 }
-
-Stipendiato::~Stipendiato() {
-	// TODO Auto-generated destructor stub
-}
-

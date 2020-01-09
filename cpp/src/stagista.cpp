@@ -6,13 +6,19 @@
  */
 
 #include "stagista.h"
+#include <iostream>
+#include <algorithm>
 
-Stagista::Stagista() {
-	// TODO Auto-generated constructor stub
+using namespace std;
 
+Stagista::Stagista() {}
+
+Stagista::Stagista(string const& nome, string const& cognome):
+		Dipendente(nome, cognome) {}
+
+Stagista::~Stagista() {}
+
+void Stagista::stampaInfo() {
+	cout << "Dipendente stagista: " << endl;
+	Dipendente::stampaInfo();
 }
-
-Stagista::~Stagista() {
-	// TODO Auto-generated destructor stub
-}
-

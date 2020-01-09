@@ -8,10 +8,29 @@
 #ifndef STAGISTA_H_
 #define STAGISTA_H_
 
-class Stagista {
+#include "dipendente.h"
+#include <vector>
+
+using namespace std;
+
+class Stagista: public virtual Dipendente {
+	friend class Azienda;
+	friend class Visitor;
+
 public:
-	Stagista();
 	virtual ~Stagista();
+
+	virtual void stampaInfo();
+
+	virtual void accept(Visitor* visitor) { visitor->visit(this); }
+
+protected:
+	Stagista();
+	Stagista(string const& nome, string const& cognome);
+
+private:
+	Stagista(Stagista const& other);
+	void operator= (Stagista const& other);
 };
 
 #endif /* STAGISTA_H_ */

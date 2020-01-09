@@ -6,13 +6,16 @@
  */
 
 #include "reperibile.h"
+#include <iostream>
 
-Reperibile::Reperibile() {
-	// TODO Auto-generated constructor stub
+using namespace std;
 
+Reperibile::Reperibile(string const& nome, string const& cognome):
+		Dipendente(nome, cognome) {}
+
+Reperibile::~Reperibile() {}
+
+void Reperibile::stampaInfo() {
+	cout << "Dipendente reperibile: ";
+	Dipendente::stampaInfo();
 }
-
-Reperibile::~Reperibile() {
-	// TODO Auto-generated destructor stub
-}
-

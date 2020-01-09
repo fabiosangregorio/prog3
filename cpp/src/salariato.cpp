@@ -6,9 +6,17 @@
  */
 
 #include "salariato.h"
+#include <iostream>
+#include <algorithm>
 
+using namespace std;
 
-Salariato::~Salariato() {
-	// TODO Auto-generated destructor stub
+Salariato::Salariato() {}
+
+Salariato::Salariato(string const& nome, string const& cognome):
+			Dipendente(nome, cognome) {}
+
+void Salariato::stampaInfo() {
+	cout << "Dipendente salariato: " << endl;
+	Dipendente::stampaInfo();
 }
-
