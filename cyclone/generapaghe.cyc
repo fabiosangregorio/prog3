@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int generapaga(const char * @notnull @fat nome, const char * @notnull @fat cognome, float importo) {
+  if(numelts(nome) < 3 || numelts(cognome) < 3) {
+    printf("\nErrore: nome e cognome devono essere lunghi almeno 3 caratteri.");
+    return 1;
+  }
+
+  time_t today = time();
+  char* @zeroterm date[20];
+  strftime(strdate, 20, "%Y-%m-%d-%H:%M:%S", localtime(&today));
+
+  FILE @f = (FILE@) fopen("paga_" + nome + "_" + cognome + "_" + strdate + ".txt");
+  fprintf(f, "Paga del %s\nNome: %s, Cognome: %s\nImporto: %d", strdate, nome, cognome, importo);
+  fclose(f);
+}
+
+int main(int argc, char ??argv) {
+  generapaga();
+  return 0;
+}
