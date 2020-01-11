@@ -14,6 +14,9 @@
 using namespace std;
 
 class Reperibile: public virtual Salariato, public virtual Stipendiato {
+	friend class Azienda;
+	friend class Visitor;
+
 public:
 	virtual ~Reperibile();
 	virtual void stampaInfo();

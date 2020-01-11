@@ -16,6 +16,8 @@ Salariato::Salariato() {}
 Salariato::Salariato(string const& nome, string const& cognome):
 			Dipendente(nome, cognome) {}
 
+Salariato::~Salariato() {}
+
 void Salariato::stampaInfo() {
 	cout << "Dipendente salariato: " << endl;
 	Dipendente::stampaInfo();

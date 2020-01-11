@@ -22,11 +22,12 @@ public:
 	~Azienda();
 
 	string const& getNome() const;
+	void setNome(string const& nome);
 
 	Stipendiato* nuovoStipendiato(string const& nome, string const& cognome);
-	Salariato* nuovoSalariato(string const& nome, string const& cognome);
-	Reperibile* nuovoReperibile(string const& nome, string const& cognome);
-	Stagista* nuovoStagista(string const& nome, string const& cognome);
+	Salariato*   nuovoSalariato(string const& nome, string const& cognome);
+	Reperibile*  nuovoReperibile(string const& nome, string const& cognome);
+	Stagista*    nuovoStagista(string const& nome, string const& cognome);
 
 	Dipendente* getDipendente(long id);
 	Dipendente* operator[] (long id);
