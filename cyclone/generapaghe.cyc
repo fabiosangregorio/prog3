@@ -2,6 +2,19 @@
 #include <stdlib.h>
 #include <time.h>
 
+char * @zeroterm upcase(char * @fat line){
+  char * @fat upcased = malloc(sizeof(char)*numelts(line));
+  for(int i = 0; i < numelts(line); i++){
+    if ((int)line[i] >= 97) {
+      upcased[i] = (char)((int)line[i] - 32);
+    } else {
+      upcased[i] = line[i];
+    }
+  }
+  return upcased;
+}
+
+// TODO: aggiungere upcase al nome file
 int generapaga(const char * @notnull @fat nome, const char * @notnull @fat cognome, float importo) {
   if(numelts(nome) < 3 || numelts(cognome) < 3) {
     printf("\nErrore: nome e cognome devono essere lunghi almeno 3 caratteri.");
