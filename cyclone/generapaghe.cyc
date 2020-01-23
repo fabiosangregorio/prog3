@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-char * @zeroterm upcase(char * @fat line){
-  char * @fat upcased = malloc(sizeof(char)*numelts(line));
+char * @zeroterm @notnull @fat upcase(char * @fat line){
+  char * @fat @zeroterm upcased = malloc(sizeof(char)*numelts(line));
   for(int i = 0; i < numelts(line); i++){
     if ((int)line[i] >= 97) {
       upcased[i] = (char)((int)line[i] - 32);
@@ -21,16 +21,22 @@ int generapaga(const char * @notnull @fat nome, const char * @notnull @fat cogno
     return 1;
   }
 
-  time_t today = time();
-  char* @zeroterm date[20];
-  strftime(strdate, 20, "%Y-%m-%d-%H:%M:%S", localtime(&today));
-
-  FILE @f = (FILE@) fopen("paga_" + nome + "_" + cognome + "_" + strdate + ".txt");
-  fprintf(f, "Paga del %s\nNome: %s, Cognome: %s\nImporto: %d", strdate, nome, cognome, importo);
+  time_t t;
+  struct tm *tmp;
+  char strdate[21] @zeroterm;
+  time(&t);
+  tmp = localtime(&t);
+  strftime(strdate, 20, "%Y-%m-%d-%H-%M-%S", tmp);
+  char filename[61] @zeroterm;
+  snprintf(filename, sizeof(filename), "paga_%s_%s_%s.txt", nome, cognome, strdate);
+  FILE @f = (FILE@) fopen(upcase(filename), "w");
+  fprintf(f, "Paga del %s\nNome: %s, Cognome: %s\nImporto: %f", strdate, nome, cognome, importo);
   fclose(f);
+  return 0;
 }
 
 int main(int argc, char ??argv) {
-  generapaga();
+  if(argc < 3) return 1;
+  generapaga(argv[1], argv[2], 21.0);
   return 0;
 }
