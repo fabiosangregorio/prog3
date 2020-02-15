@@ -2,3 +2,4 @@
 Debug
 *.exe
 .settings
+**/cyclone/**.txt

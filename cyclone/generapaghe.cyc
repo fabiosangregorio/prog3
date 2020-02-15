@@ -2,41 +2,73 @@
 #include <stdlib.h>
 #include <time.h>
 
-char * @zeroterm @notnull @fat upcase(char * @fat line){
-  char * @fat @zeroterm upcased = malloc(sizeof(char)*numelts(line));
-  for(int i = 0; i < numelts(line); i++){
-    if ((int)line[i] >= 97) {
-      upcased[i] = (char)((int)line[i] - 32);
+/**
+  * upcase - ritorna una nuova stringa con il contenuto della stringa passata come
+  *          parametro in maiuscolo
+  *   @param   str (const char *): la stringa il cui contenuto rendere maiuscolo
+  *   @return  una nuova stringa maiuscola
+*/
+char * @zeroterm @notnull @fat upcase(const char * @fat str){
+  char * @fat @zeroterm upcased = calloc(numelts(str), sizeof(char));
+  for(int i = 0; i < numelts(str); i++){
+    if ((int)str[i] >= 97) {
+      upcased[i] = (char)((int)str[i] - 32);
     } else {
-      upcased[i] = line[i];
+      upcased[i] = str[i];
     }
   }
   return upcased;
 }
 
-// TODO: aggiungere upcase al nome file
-int generapaga(const char * @notnull @fat nome, const char * @notnull @fat cognome, float importo) {
+/**
+  * today_to_str - copia nella stringa passata come parametro la data e ora attuale
+  *   @param   str (char *): la stringa in cui copiare il risultato
+*/
+void today_to_str(char * @notnull @fat str) {
+  time_t t;
+  struct tm *tmp;
+  time(&t);
+  tmp = localtime(&t);
+  strftime(str, 25, "%Y-%m-%d alle %H:%M:%S", tmp);
+}
+
+/**
+  * genera_paga - genera un file di paga nella cartella corrente, contenente le
+  *               informazioni della persona associata alla paga e il suo importo
+  *   @param   nome (const char *): nome della persona di cui generare la paga
+  *   @param   cognome (const char *): cognome della persona di cui generare la paga
+  *   @param   importo (float): importo della paga
+  *   @return  0 se l'operazione e' andata a buon fine, 1 altrimenti.
+*/
+int genera_paga(const char * @notnull @fat nome, const char * @notnull @fat cognome, float importo) {
   if(numelts(nome) < 3 || numelts(cognome) < 3) {
     printf("\nErrore: nome e cognome devono essere lunghi almeno 3 caratteri.");
     return 1;
   }
 
-  time_t t;
-  struct tm *tmp;
-  char strdate[21] @zeroterm;
-  time(&t);
-  tmp = localtime(&t);
-  strftime(strdate, 20, "%Y-%m-%d-%H-%M-%S", tmp);
+  char strdatetime[26] @zeroterm;
+  char strdate[11] @zeroterm;
   char filename[61] @zeroterm;
+
+  today_to_str(strdatetime);
+  snprintf(strdate, 10, strdatetime);
+  
   snprintf(filename, sizeof(filename), "paga_%s_%s_%s.txt", nome, cognome, strdate);
   FILE @f = (FILE@) fopen(upcase(filename), "w");
-  fprintf(f, "Paga del %s\nNome: %s, Cognome: %s\nImporto: %f", strdate, nome, cognome, importo);
+  fprintf(f, "Paga del %s emessa il %s\nNome: %s, Cognome: %s\nImporto: %f", strdate, strdatetime, nome, cognome, importo);
   fclose(f);
   return 0;
 }
 
 int main(int argc, char ??argv) {
-  if(argc < 3) return 1;
-  generapaga(argv[1], argv[2], 21.0);
+  /* In caso non siano passati gli argomenti necessari al software, stampa l'utilizzo
+     corretto del programma */
+  if(argc < 3) {
+    printf("Uso: generapaghe.exe nome cognome importo \nParametro 1: nome\nParametro 2: cognome\nParametro 3: importo");
+    /* infine ritorna con codice errore */
+    return 1;
+  }
+
+  genera_paga(argv[1], argv[2], 21.0);
   return 0;
 }
