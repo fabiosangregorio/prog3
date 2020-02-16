@@ -69,6 +69,6 @@ int main(int argc, char ??argv) {
     return 1;
   }
 
-  genera_paga(argv[1], argv[2], 21.0);
+  genera_paga(argv[1], argv[2], (double)atof(argv[3]));
   return 0;
 }

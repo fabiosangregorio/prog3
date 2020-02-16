@@ -20,6 +20,9 @@ class Salariato: public virtual Dipendente {
 public:
 	virtual ~Salariato();
 
+	void setOreLavorate(int oreLavorate);
+	int getOreLavorate();
+
 	virtual void stampaInfo();
 
 	virtual void accept(Visitor* visitor) { visitor->visit(this); }
@@ -29,6 +32,8 @@ protected:
 	Salariato(string const& nome, string const& cognome);
 
 private:
+	int oreLavorate;
+
 	Salariato(Salariato const& other);
 	void operator= (Salariato const& other);
 };

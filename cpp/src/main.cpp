@@ -6,20 +6,22 @@ using namespace std;
 int main() {
 	Azienda *az = Azienda::getInstance();
 	az->setNome("Test");
-	cout << az->getNome() << endl;
 
-	Stipendiato* p = az->nuovoStipendiato("stip1", "cogn_stip1");
-	p->stampaInfo();
-
+	Stipendiato* p = az->nuovoStipendiato("stip1", "cogn_stip1", 3);
 	Salariato* s = az->nuovoSalariato("sal1", "cogn_sal1");
+	s->setOreLavorate(100);
+	Reperibile* r = az->nuovoReperibile("rep1", "cogn_rep1");
+	r->setOreLavorate(10);
+	Dipendente* pr = (Dipendente*)r;
+
+	cout << "Nome azienda: " << az->getNome() << endl;
+	p->stampaInfo();
 	s->stampaInfo();
+	pr->stampaInfo();
 
-	Reperibile* d = az->nuovoReperibile("rep1", "cogn_rep1");
+	az->find("Cogn_sal");
 
-	Dipendente* pd = (Dipendente*)d;
-	pd->stampaInfo();
-
-	az->find("cogn_sal1");
+	az->generaPaghe();
 
 	delete az;
 	return 0;

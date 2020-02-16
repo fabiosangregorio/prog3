@@ -20,15 +20,20 @@ class Stipendiato: public virtual Dipendente {
 public:
 	virtual ~Stipendiato();
 
+	void setLivello(int livello);
+	int getLivello();
+
 	virtual void stampaInfo();
 
 	virtual void accept(Visitor* visitor) { visitor->visit(this); }
 
 protected:
 	Stipendiato();
-	Stipendiato(string const& nome, string const& cognome);
+	Stipendiato(string const& nome, string const& cognome, int livello);
 
 private:
+	int livello;
+
 	Stipendiato(Stipendiato const& other);
 	void operator= (Stipendiato const& other);
 };
