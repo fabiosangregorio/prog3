@@ -37,10 +37,10 @@ void today_to_str(char * @notnull @fat str) {
   *               informazioni della persona associata alla paga e il suo importo
   *   @param   nome (const char *): nome della persona di cui generare la paga
   *   @param   cognome (const char *): cognome della persona di cui generare la paga
-  *   @param   importo (float): importo della paga
+  *   @param   importo (double): importo della paga
   *   @return  0 se l'operazione e' andata a buon fine, 1 altrimenti.
 */
-int genera_paga(const char * @notnull @fat nome, const char * @notnull @fat cognome, float importo) {
+int genera_paga(const char * @notnull @fat nome, const char * @notnull @fat cognome, double importo) {
   if(numelts(nome) < 3 || numelts(cognome) < 3) {
     printf("\nErrore: nome e cognome devono essere lunghi almeno 3 caratteri.");
     return 1;
