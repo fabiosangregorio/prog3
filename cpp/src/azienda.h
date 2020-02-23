@@ -43,7 +43,6 @@ private:
 
 	Azienda();
 	Azienda(Azienda const& other);
-	void operator= (Azienda const& other);
 
 	long nuovoDipendente(Dipendente* dipendente);
 };

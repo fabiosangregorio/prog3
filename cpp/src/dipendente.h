@@ -33,7 +33,6 @@ private:
 	string cognome;
 
 	Dipendente(Dipendente const& other);
-	void operator= (Dipendente const& other);
 };
 
 #endif /* DIPENDENTE_H_ */

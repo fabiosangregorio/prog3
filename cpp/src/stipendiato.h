@@ -9,7 +9,6 @@
 #define STIPENDIATO_H_
 
 #include "dipendente.h"
-#include <vector>
 
 using namespace std;
 
@@ -35,7 +34,6 @@ private:
 	int livello;
 
 	Stipendiato(Stipendiato const& other);
-	void operator= (Stipendiato const& other);
 };
 
 #endif /* STIPENDIATO_H_ */

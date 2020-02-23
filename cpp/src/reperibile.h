@@ -27,7 +27,6 @@ protected:
 
 private:
 	Reperibile(Reperibile const& other);
-	void operator= (Reperibile const& other);
 };
 
 #endif /* REPERIBILE_H_ */

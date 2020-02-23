@@ -9,7 +9,6 @@
 #define SALARIATO_H_
 
 #include "dipendente.h"
-#include <vector>
 
 using namespace std;
 
@@ -35,7 +34,6 @@ private:
 	int oreLavorate;
 
 	Salariato(Salariato const& other);
-	void operator= (Salariato const& other);
 };
 
 #endif /* SALARIATO_H_ */
