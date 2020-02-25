@@ -1,3 +1,5 @@
 /.metadata/
 Debug
-.vscode
+*.exe
+.settings
+**/cyclone/**.txt

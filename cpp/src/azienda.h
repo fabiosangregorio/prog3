@@ -24,7 +24,7 @@ public:
 	string const& getNome() const;
 	void setNome(string const& nome);
 
-	Stipendiato* nuovoStipendiato(string const& nome, string const& cognome);
+	Stipendiato* nuovoStipendiato(string const& nome, string const& cognome, int livello);
 	Salariato*   nuovoSalariato(string const& nome, string const& cognome);
 	Reperibile*  nuovoReperibile(string const& nome, string const& cognome);
 	Stagista*    nuovoStagista(string const& nome, string const& cognome);
@@ -32,6 +32,7 @@ public:
 	Dipendente* getDipendente(long id);
 	Dipendente* operator[] (long id);
 	void find(string const& string);
+	void generaPaghe();
 
 private:
 	static Azienda *instance;
@@ -42,7 +43,6 @@ private:
 
 	Azienda();
 	Azienda(Azienda const& other);
-	void operator= (Azienda const& other);
 
 	long nuovoDipendente(Dipendente* dipendente);
 };

@@ -9,7 +9,6 @@
 #define STAGISTA_H_
 
 #include "dipendente.h"
-#include <vector>
 
 using namespace std;
 
@@ -30,7 +29,6 @@ protected:
 
 private:
 	Stagista(Stagista const& other);
-	void operator= (Stagista const& other);
 };
 
 #endif /* STAGISTA_H_ */
