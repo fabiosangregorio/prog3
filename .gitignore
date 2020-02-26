@@ -4,3 +4,4 @@ Debug
 .settings
 **/cyclone/**.txt
 .vscode
+scala/out
