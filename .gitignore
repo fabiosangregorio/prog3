@@ -3,3 +3,4 @@ Debug
 *.exe
 .settings
 **/cyclone/**.txt
+.vscode
