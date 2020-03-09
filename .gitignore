@@ -1,7 +1,5 @@
 /.metadata/
 Debug
-*.exe
 .settings
-**/cyclone/**.txt
 .vscode
 scala/out
