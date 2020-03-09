@@ -3,8 +3,8 @@ import java.io.{File, PrintWriter}
 import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
 
+
 object Main {
-  /////////////////////////////            CLASSI            ///////////////////////////////
   class Library(var id : Int, var books : List[Book], var signupDays : Int, var booksPerDay : Int) extends Ordered[Library]{
     var booksToSend = new ArrayBuffer[Book]()
     var numBooks = this.books.length
@@ -18,25 +18,27 @@ object Main {
     override def toString = id.toString + " :" + "NumBooks: " + numBooks + ", SignUp: " + signupDays + ", BxD: " + booksPerDay
   }
 
+
   class Book(var id: Int, var score: Int) extends Ordered[Book]{
     def compare(that: Book): Int = this.score - that.score
   }
 
+
   def main(args : Array[String]): Unit = {
-    //////////////////////////////         INPUT         //////////////////////////////////////
     val path : String = System.getProperty("user.dir") + "\\src\\"
     val files = List(
-//            "a_example.txt",
-            "b_read_on.txt",
-      //      "c_incunabula.txt",
-      //      "d_tough_choices.txt",
-      //      "e_so_many_books.txt",
-      //"f_libraries_of_the_world.txt"
+      "a_example.txt",
+      "b_read_on.txt",
+      "c_incunabula.txt",
+      "d_tough_choices.txt",
+      "e_so_many_books.txt",
+      "f_libraries_of_the_world.txt"
     )
 
     files.foreach(file => {
       println("STARTING PROBLEM " + file)
 
+      // Input manipulation
       val source = Source.fromFile(new File(path + file))
       val lines = source.getLines.toList
       source.close
@@ -66,12 +68,12 @@ object Main {
         i += 2
       }
 
-      ////////////////////////     ORDINAMENTO DELLE LIBRERIE      ///////////////////////////////////////////
+      // Libraries sorting
       println("ORDLIB -- Inizio Ordinamento Librerie")
       libraries = libraries.sorted.reverse
       println("ORDLIB -- Fine Ordinamento Librerie")
 
-      ////////////////////////// FILTRAGGIO LISTE LIBRI PER LIBRERIA //////////////////////////////////
+      // Books filtering per library
       println("BOOKS -- Filtering Books")
       var res_libraries = ArrayBuffer[Library]() // in ordine di sign up
       var duplicate_books = ArrayBuffer[Int]()
@@ -94,7 +96,7 @@ object Main {
       }
       println("BOOKS -- Filtering Books DONE")
 
-      ///////////////////////////////     CREAZIONE OUTPUT     //////////////////////////////////////////
+      // Output creation
       res_libraries = res_libraries.filter(_.booksToSend.nonEmpty)
       val writer = new PrintWriter(new File(path + "output\\output_" + file))
       writer.append(res_libraries.size.toString +"\n")
@@ -111,7 +113,3 @@ object Main {
     })
   }
 }
-
-
-
-
