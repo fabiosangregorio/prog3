@@ -67,7 +67,6 @@ class Solver(var file:String) extends Thread {
     }
     println("BOOKS -- Filtering Books DONE")
     ///////////////////////////////////////// OUTPUT ////////////////////////////////////////////
-    val debugger = new PrintWriter(new File(_path + "debug\\debug_" + file))
     val writer = new PrintWriter(new File(_path + "output\\output_" + file))
     res_libraries = res_libraries.filter(_.booksToSend.nonEmpty)
     writer.append(res_libraries.size.toString +"\n")
@@ -76,7 +75,6 @@ class Solver(var file:String) extends Thread {
       library.booksToSend.foreach(book => writer.append(book.id + " "))
       writer.append("\n")
     }
-    debugger.close()
     writer.close()
     println(s"$file : solver execution finished")
   }
